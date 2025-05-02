@@ -1,0 +1,157 @@
+{
+    "banners": [
+        {
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585629/fashions_banners_iaorri.jpg",
+            "category": "cloths"
+        },
+        {
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585629/homeappliances_banners_cgapz3.jpg",
+            "category": "smarttvs"
+        },
+        {
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585628/ExampleCarouselImage_hga6to.jpg",
+            "category": "smartphones"
+        }
+    ],
+    "sideCard": [
+        {
+            "text": "Great deals on Headphones",
+            "imgaeURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585758/headphone_mkymvy.webp",
+            "category": "headphones",
+            "discount": 50
+        },
+        {
+            "text": "Try something new for home",
+            "imgaeURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585758/home_je5vkr.jpg",
+            "category": "homedecors",
+            "discount": 45
+        }
+    ],
+    "card":[
+        {
+            "brand": "Redmi",
+            "text": "Upto 45% Off",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585813/redmi_if4ltf.png",
+            "category": "smartphones"
+        },
+        {
+            "brand": "Realme",
+            "text": "Upto 5o% Off",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585814/realme_luowwq.png",
+            "category": "smartphones"
+        },
+        {
+            "brand": "Vivo",
+            "text": "Upto 5o% Off",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585814/vivo_ggzenh.webp",
+            "category": "smartphones"
+        },
+        {
+            "brand": "iPhone",
+            "text": "Upto 62% Off",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585812/iphone_fpvbbi.png",
+            "category": "smartphones"
+        },
+        {
+            "brand": "Samsung",
+            "text": "Upto 45% Off",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585814/samsung_y8lnbk.png",
+            "category": "smartphones"
+        },
+        {
+            "brand": "Motorola",
+            "text": "Upto 55% Off",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745585812/motorola_lwvcdl.png",
+            "category": "smartphones"
+        }
+    ],
+    "tabCard": [
+        {
+            "text": "Smart TV",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586019/appliances_ypwizy.jpg",
+            "category": "smarttvs"
+        },
+        {
+            "text": "Cosmetic",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586020/cosmetic_jec1xp.png",
+            "category": "cosmetics"
+        },
+        {
+            "text": "Decor",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586020/decor_toksnr.jpg",
+            "category": "homedecors"
+        },
+        {
+            "text": "Footwears",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586021/footwears_z1bnnm.webp",
+            "category": "footwears"
+        },
+        {
+            "text": "Mobiles",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586024/mobiles_xwzlhx.png",
+            "category": "smartphones"
+        },
+        {
+            "text": "Toys",
+            "imageURL": "https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586025/toys_j6jhbf.jpg",
+            "category": "toys"
+        }
+    ],
+    "gridCardFirst":{
+        "bannerImgURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586489/fashion_collection_ry2pv0.jpg",
+        "category":"cloths",
+        "secondaryData":[
+            {
+                "text":"Men's Wears",
+                "category":"cloths",
+                "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586490/img1_ybmxhb.jpg"
+            },
+            {
+                "text":"Watches",
+                "category":"watchs",
+                "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586491/img2_svatta.webp"
+            },
+            {
+                "text":"Women's Wears",
+                "category":"cloths",
+                "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586492/img3_tbmhxb.jpg"
+            },
+            {
+                "text":"Kid's Wears",
+                "category":"cloths",
+                "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586500/img4_uimebi.jpg"
+            },
+            {
+                "text":"Makeup",
+                "category":"cosmetics",
+                "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586500/img5_pbjogp.webp"
+            }
+        ]
+    },
+    "gridCardSecond":[
+        {
+            "headText":"TV",
+            "text":"Start from 10000",
+            "category":"smarttvs",
+            "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586504/tv_iuldds.webp"
+        },
+        {
+            "headText":"Gaming Laptops",
+            "text":"Start from 59999",
+            "category":"laptops",
+            "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586502/laptop_fgzdnc.jpg"
+        },
+        {
+            "headText":"Footwears",
+            "text":"Start from 599",
+            "category":"footwears",
+            "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586490/footwears_bwmbso.jpg"
+        },
+        {
+            "headText":"Men's shirts",
+            "text":"Start from 1000",
+            "category":"cloths",
+            "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745586503/shirts_qxqwmc.jpg"
+        }
+    ]
+}

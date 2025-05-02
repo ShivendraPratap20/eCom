@@ -1,0 +1,91 @@
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+  
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+    max-height: 500px;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+    display: none;
+  }
+  
+  .left-arrow {
+    left: 10px;
+  }
+  
+  .right-arrow {
+    right: 10px;
+  }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: #717171;
+  }
+  .carousel-image:hover{
+    cursor: pointer;
+  }
+  /* Show arrows on desktop only */
+  @media (min-width: 768px) {
+    .arrow {
+      display: block;
+    }
+  }
+  @media (max-width:576px){
+    .carousel-container{
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  }
+  @media (min-width:577px) and (max-width:1024px ){
+    .carousel-container{
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+  }

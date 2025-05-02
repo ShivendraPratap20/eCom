@@ -1,0 +1,211 @@
+[
+    {
+        "name":"REDMI 13 5G (Hawaiian Blue, 128 GB)  (6 GB RAM)",
+        "category":"Smartphone",
+        "brand":"RedMI",
+        "originalPrice":"₹18,780",
+        "salePrice":"₹14,500",
+        "imageURL" :"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745687567/Redmi135G-HawaiianBlue_tlatou.webp",
+        "highlights":{
+            "Ram": "6 GB",
+            "Rom": "128 GB",
+            "Processor": "Qualcomm SM4450 Snapdragon 4 Gen 2 AE (4 nm) Processor",
+            "Battery": "5030 mAh Battery",
+            "Camera": "108MP Rear Camera"
+        },
+        "sellerName":"Lorem Ipsum",
+        "searchKeywords":["Smartphones", "Phones", "Mobiles", "Electronic devices", "redmi", "android"],
+        "specifications":
+        {
+            "Model Name":"13 5G",
+            "Model Number":"2406ERN9CI",
+            "Color":"Hawaiian Blue",
+            "SIM Type":"Dual Sim",
+            "Charging":"Fast charging support",
+            "Display Size":"17.53 cm (6.9 inch)",
+            "Display type":"Dynamic AMOLED ",
+            "OS":"Android 15",
+            "Processor":"Snapdragon 7s Gen 3 Mobile Platform",
+            "RAM":"6 GB",
+            "ROM":"128 GB",
+            "Primary Camera":"108MP Rear Camera",
+            "Secondary Camera":"2 MP, (macro)",
+            "Network Type":"5G, 4G VOLTE, 4G, 3G, 2G",
+            "Battery":"5000 mAh Lithium Ion",    
+            "Warranty Summary":"1 Year Manufacturer Warranty for Device and 6 Months for In-Box Accessories",
+            "Width":"77.6 mm",
+            "Height":"162.8  mm",
+            "Weight":"218 g"
+        }
+
+    },
+
+
+    {
+        "name":"realme 14 Pro+ 5G",
+        "category":"Smartphone",
+        "brand":"RealMe",
+        "originalPrice":"₹48,380",
+        "salePrice":"₹31,999",
+        "imageURL":"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745687567/realme-14-pro-plus-5g-suede-grey-256gb-12gb-ram-front-back-view_fbtp6e.webp",
+        "highlights":{
+            "Ram": "12 GB RAM",
+            "Rom":"256 GB",
+            "Camera":"50MP + 50MP + 8MP | 32MP Front Camera",
+            "Battery":"6000 mAh Battery",
+            "Processor":"7s Gen 3 Mobile Platform Processor"
+        },
+        "sellerName":"Lorem Ipsum",
+        "searchKeywords":["Smartphones", "Phones", "Mobiles", "Electronic devices", "realme", "android"],
+        "specifications":
+        {
+           "Model Name":"14 Pro+ 5G",
+            "Model Number":"RMX5051",
+            "Color":"Suede Grey",
+            "SIM Type":"Dual Sim",
+            "Charging":"32W Fast Charging support",
+            "Display Size":"17.35 cm (6.83 inch)",
+            "Display type":"Full HD AMOLED",
+            "OS":"Android 15",
+            "Processor":"Snapdragon 7s Gen 3 Mobile Platform",
+            "RAM":"8 GB",
+            "ROM":"256 GB",
+            "Primary Camera":"50MP + 50MP + 8MP",
+            "Secondary Camera":"32MP",
+            "Network Type":"5G, 4G VOLTE, 4G, 3G, 2G",
+            "Battery":"6000 mAh",    
+            "Warranty Summary":"1 Year Manufacturer Warranty for Device and 6 Months Manufacturer Warranty for Inbox Accessories",
+            "Width":"77.6 mm",
+            "Height":"162.8  mm",
+            "Weight":"218 g"
+        }
+
+    },
+
+
+    {
+        "name":"vivo X90",
+        "category":"Smartphone",
+        "brand":"Vivo",
+        "originalPrice":"₹58,500",
+        "salePrice":"₹44,200",
+        "imageURL" :"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745687564/images_fev9ev.jpg",
+        "highlights":{
+            "ram": "12 GB RAM",
+            "rom":"256 GB",
+            "camera":"50MP + 12MP + 12MP | 32MP Front Camera",
+            "battery":"4810 mAh Battery",
+            "processor":"Dimensity 9200 Processor"
+        },
+        "sellerName":"Lorem Ipsum",
+        "searchKeywords":["Smartphones", "Phones", "Mobiles", "Electronic devices", "vivo", "android"],
+        "specifications":
+        {
+            "Model Name":"X90",
+            "Model Number":"V2218",
+            "Color":"Breeze Blue",
+            "SIM Type":"Dual Sim",
+            "Charging":"Fast charging support",
+            "Display Size":"17.22 cm (6.78 inch)",
+            "Display type":"Full HD+ AMOLED Display",
+            "OS":"Android 13",
+            "Processor":"Mediatek Dimensity 9200 Octa Core",
+            "RAM":"12 GB",
+            "ROM":"256 GB",
+            "Primary Camera":"50MP + 12MP + 12MP",
+            "Secondary Camera":"32MP",
+            "Network Type":"5G, 4G VOLTE, 4G, 3G, 2G",
+            "Battery":"4810 mAh Lithium Type",    
+            "Warranty Summary":"1 Year Handset and 6 Months Accessories",
+            "Width":"74.44 mm",
+            "Height":"164.1 mm",
+            "Weight":"200 g"
+        }
+
+    },
+
+
+    {
+        "name":"Apple iPhone 16 ",
+        "category":"Smartphone",
+        "brand":"iPhone",
+        "originalPrice":"₹88,780",
+        "salePrice":"₹74,990",
+        "imageURL" :"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745687564/iPhone_16_Pink_PDP_Image_Position_1__en-IN_1b73c75e-6eb0-4364-a658-79e7c2fb6648_grz9az.webp",
+        "highlights":{
+            "Ram": "12 GB RAM",
+            "Rom":"128 GB",
+            "Camera":"48MP + 12MP | 12MP Front Camera",
+            "Battery":"Built-in Rechargeable Lithium-ion Battery",
+            "Processor":"A18 Chip, 6 Core Processor Processor"
+        },
+        "sellerName":"Lorem Ipsum",
+        "searchKeywords":["Smartphones", "Phones", "Mobiles", "Electronic devices", "vivo", "android"],
+        "specifications":
+        {
+            "Model Name":"iPhone 16",
+            "Model Number":"MYEC3HN/A",
+            "Color":"Breeze Blue",
+            "SIM Type":"Dual Sim",
+            "Charging":"Fast charging support",
+            "Display Size":"15.49 cm (6.1 inch)",
+            "Display type":"All Screen OLED Display",
+            "OS":"iOS 18",
+            "Processor":"A18 Chip, 6 Core Processor",
+            "RAM":"12 GB",
+            "ROM":"128 GB",
+            "Primary Camera":"48MP + 12MP",
+            "Secondary Camera":"12MP Front Camera",
+            "Network Type":"5G, 4G VOLTE, 4G, 3G, 2G",
+            "Battery":"Built-in Rechargeable Lithium-ion Battery",    
+            "Warranty Summary":"1 year warranty for phone and 1 year warranty for in Box Accessories",
+            "Width":"71.6 mm",
+            "Height":"147.6  mm",
+            "Weight":"170 g"
+        }
+
+    },
+    
+    
+
+    {
+        "name":"SAMSUNG S25 Ultra 5G",
+        "category":"Smartphone",
+        "brand":"Samsung",
+        "originalPrice":"₹1,99,500",
+        "salePrice":"₹1,29,999",
+        "imageURL" :"https://res.cloudinary.com/dqraj6g9a/image/upload/v1745687564/Samsung-Galaxy-S24-Ultra_A_featured-image-packshot-review_vnkvtj.jpg",
+        "highlights":{
+            "Ram": "12 GB RAM",
+            "Rom":"256 GB",
+            "Camera":"200MP + 50MP + 50MP + 10MP | 12MP Front Camera",
+            "Battery":"5000 mAh Battery",
+            "Processor":"8 Elite for Galaxy Processor"
+        },
+        "sellerName":"Lorem Ipsum",
+        "searchKeywords":["Smartphones", "Phones", "Mobiles", "Electronic devices", "samsung", "android"],
+        "specifications":
+        {
+            "Model Name":"S25 Ultra 5G",
+            "Model Number":"SM-S938BZTBINS",
+            "Color":"Titanium Gray",
+            "SIM Type":"Dual Sim",
+            "Charging":"Fast charging support",
+            "Display Size":"17.53 cm (6.9 inch)",
+            "Display type":"Dynamic AMOLED 2X",
+            "OS":"Android 15",
+            "Processor":"Snapdragon Octa Core 8 Elite for Galaxy",
+            "RAM":"12 GB",
+            "ROM":"256 GB",
+            "Secondary Camera":"12MP Front Camera",
+            "Primary Camera":"200MP + 50MP + 50MP + 10MP",
+            "Network Type":"5G, 4G VOLTE, 4G, 3G, 2G",
+            "Battery":"5000 mAh Lithium Ion",    
+            "Warranty Summary":"1 Year Manufacturer Warranty for Device and 6 Months for In-Box Accessories",
+            "Width":"77.6 mm",
+            "Height":"162.8  mm",
+            "Weight":"218 g"
+        }
+
+    }
+]
