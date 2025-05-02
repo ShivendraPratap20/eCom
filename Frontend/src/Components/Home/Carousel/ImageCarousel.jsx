@@ -10,8 +10,6 @@ const ImageCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const timeoutRef = useRef(null);
-  //const images = ['/images/hmdt/banners/fashions_banners.jpg', '/images/banners/homeappliances_banners.jpg', '/images/banners/ExampleCarouselImage.jpg'];
-  const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? hmdt.banners.length - 1 : prev - 1));
   };
 
@@ -31,22 +29,19 @@ const ImageCarousel = () => {
   });
 
   useEffect(() => {
-    const interval = setInterval(goToNext, 5000); // Auto-play every 5s
+    const interval = setInterval(goToNext, 5000); 
     return () => clearInterval(interval);
   }, []);
   if(loading) return <div>Loading</div>
   else {return (
     <div className="carousel-container" {...swipeHandlers}>
       <div className="carousel-wrapper">
-        {/* Arrows */}
         <button className="arrow left-arrow" onClick={goToPrevious}>
           ❮
         </button>
         <button className="arrow right-arrow" onClick={goToNext}>
           ❯
         </button>
-
-        {/* Slides */}
         <div className="carousel-slide" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {hmdt.banners.map((src, index) => (
               <img key={index} src={src.imageURL} alt={`Slide ${index}`} className="carousel-image" 
@@ -58,8 +53,6 @@ const ImageCarousel = () => {
           }
         </div>
       </div>
-
-      {/* Dots */}
       <div className="carousel-dots">
         {hmdt.banners.map((_, index) => (
           <span
@@ -71,6 +64,6 @@ const ImageCarousel = () => {
       </div>
     </div>
   );
-};}
+};
 
 export default ImageCarousel;

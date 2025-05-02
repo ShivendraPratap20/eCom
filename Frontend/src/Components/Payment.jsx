@@ -160,7 +160,7 @@ export default function Payment() {
         if (!loading) {
             if (authorized) {
                 try {
-                    const response = await fetch('http://localhost:8000/orders', {
+                    const response = await fetch('https://ecom-f5re.onrender.com/orders', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

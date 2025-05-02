@@ -1,5 +1,4 @@
 require('dotenv').config({});
-console.log(require('dotenv').config({}));
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -50,6 +49,7 @@ app.post("/login", async (req, res) => {
         const token = await userData[0].generateToken();
         console.log(token);
         res.cookie("JWT", token, {
+            secure:true,
             maxAge: 30*24*60*60*1000
         });
         console.log(req.cookies.JWT);

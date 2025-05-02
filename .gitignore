@@ -5,6 +5,6 @@
 /Frontend/.env
 
 /Backend/node_modules/
-/Backend/.env
-/Backend/src/.env
 /Backend/JSONDATAS
+/Backend/src/.env
+/Backend/.env

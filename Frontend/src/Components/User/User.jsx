@@ -105,7 +105,7 @@ export default function User() {
     const navigate = useNavigate();
 
     const setAddress = (userID, adrs) => {
-        fetch("http://localhost:8000/setAddress", {
+        fetch("https://ecom-f5re.onrender.com/setAddress", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -123,7 +123,7 @@ export default function User() {
     }
 
     const logout = () => {
-        fetch("http://localhost:8000/logout", {
+        fetch("https://ecom-f5re.onrender.com/logout", {
             method: "GET",
             credentials: "include"
         })

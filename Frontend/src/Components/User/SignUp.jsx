@@ -132,7 +132,7 @@ export default function SignUp() {
         },
         validationSchema: ValidationSchema,
         onSubmit: (values, action) => {
-            fetch("http://localhost:8000/register", {
+            fetch("https://ecom-f5re.onrender.com/register", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json"
