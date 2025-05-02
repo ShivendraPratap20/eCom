@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
 const Contxt = createContext();
-const HMDT_URL = "https://ecom-f5re.onrender.com/hmdt";
+const HMDT_URL = "/hmdt";
 export default function ContextProvider({ children }) {
     const [display, setDisplay] = useState("none");
     const [isOpen, setIsOpen] = useState(false);
