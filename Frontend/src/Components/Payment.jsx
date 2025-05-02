@@ -322,7 +322,7 @@ export default function Payment() {
                                                                         `${val.name.slice(0, 25)}....`
                                                                     ) : (val.name)
                                                             }</h6>
-                                                            <p>{val.price}</p>
+                                                            <p>{val.salePrice}</p>
                                                         </div>
                                                         <div><FontAwesomeIcon icon={faXmark} style={{ width: "30px", height: "30px", color: "#4a7766", cursor: "pointer", position: "absolute", top: "5px", right: "5px", }}
                                                             onClick={() => { navigate(-1) }}
@@ -340,7 +340,7 @@ export default function Payment() {
                                                     <h5 id="price">
                                                         ₹{
                                                             productData
-                                                                .map(val => Number(val.price.replace(/[₹,]/g, "")))
+                                                                .map(val => Number(val.salePrice.replace(/[₹,]/g, "")))
                                                                 .reduce((acc, curr) => acc + curr, 0)
                                                                 .toLocaleString()
                                                         }
