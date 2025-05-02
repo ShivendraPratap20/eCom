@@ -217,7 +217,7 @@ export default function Payment() {
                                         <h5>{userData.name.length > 10 ? `${userData.name.slice(0, 10)}...` : userData.name}</h5>
                                         <p>{userData.phone}</p>
                                         {
-                                            (userData.address.length < 0) ?
+                                            (userData.address.length < 0 || userData.address == undefined || userData.address == null) ?
                                                 (<>
                                                     <input type="text"
                                                         name="address"
