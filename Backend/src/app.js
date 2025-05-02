@@ -1,4 +1,5 @@
-require('dotenv').config({});
+const path = require("path");
+require('dotenv').config({path: path.join(__dirname, "./.env")});
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -6,7 +7,6 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const auth = require("./middleware/auth");
 const fs = require("fs");
-const path = require("path");
 const PORT = process.env.PORT || 8000;
 require("./db/conn");
 const hmdt = require("../hmdt.json");
