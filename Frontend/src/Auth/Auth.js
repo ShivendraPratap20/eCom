@@ -7,7 +7,7 @@ export default function useAuth() {
   const [error, setError] = useState(null);
   const verifyAuth = async () => {
     try {
-      const response = await fetch("https://ecom-f5re.onrender.com/verification", {
+      const response = await fetch("/verification", {
         method: "GET",
         credentials: "include",
       });

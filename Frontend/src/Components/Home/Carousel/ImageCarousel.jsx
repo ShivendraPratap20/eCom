@@ -1,16 +1,20 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import classNames from 'classnames';
-import './ImageCarousel.css'; 
+import './ImageCarousel.css';
 import { Contxt } from '../../../ContextProvider';
 import { useNavigate } from 'react-router-dom';
 
 const ImageCarousel = () => {
-  const {hmdt, loading}= useContext(Contxt);
+  const { hmdt, loading } = useContext(Contxt);
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const timeoutRef = useRef(null);
-    setCurrentIndex((prev) => (prev === 0 ? hmdt.banners.length - 1 : prev - 1));
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? hmdt.banners.length - 1 : prev - 1
+    );
   };
 
   const goToNext = () => {
@@ -29,11 +33,17 @@ const ImageCarousel = () => {
   });
 
   useEffect(() => {
-    const interval = setInterval(goToNext, 5000); 
-    return () => clearInterval(interval);
-  }, []);
-  if(loading) return <div>Loading</div>
-  else {return (
+    // Auto-slide every 5 seconds
+    timeoutRef.current = setInterval(goToNext, 5000);
+    return () => clearInterval(timeoutRef.current);
+  }, [hmdt?.banners?.length]); // Restart interval if banner list changes
+
+  // Handle loading or missing data
+  if (loading || !hmdt || !Array.isArray(hmdt.banners)) {
+    return <div>Loading...</div>;
+  }
+
+  return (
     <div className="carousel-container" {...swipeHandlers}>
       <div className="carousel-wrapper">
         <button className="arrow left-arrow" onClick={goToPrevious}>
@@ -42,17 +52,25 @@ const ImageCarousel = () => {
         <button className="arrow right-arrow" onClick={goToNext}>
           ❯
         </button>
-        <div className="carousel-slide" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+
+        <div
+          className="carousel-slide"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
           {hmdt.banners.map((src, index) => (
-              <img key={index} src={src.imageURL} alt={`Slide ${index}`} className="carousel-image" 
-                onClick={()=>{
-                  navigate(`/products?category=${encodeURIComponent(src.category)}`)
-                }}
-              />
-            ))
-          }
+            <img
+              key={index}
+              src={src.imageURL}
+              alt={`Slide ${index}`}
+              className="carousel-image"
+              onClick={() => {
+                navigate(`/products?category=${encodeURIComponent(src.category)}`);
+              }}
+            />
+          ))}
         </div>
       </div>
+
       <div className="carousel-dots">
         {hmdt.banners.map((_, index) => (
           <span

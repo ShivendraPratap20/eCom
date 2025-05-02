@@ -56,7 +56,7 @@ export default function Help(){
     const [error, setError] = useState(null);
     const [message, setMessage] = useState(null)
     const handler = ()=>{
-        fetch("https://ecom-f5re.onrender.com/help", {
+        fetch("/help", {
             method: "POST",
             headers: {
                 'Content-Type': "application/json"

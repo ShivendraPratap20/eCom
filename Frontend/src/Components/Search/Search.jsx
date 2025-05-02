@@ -23,7 +23,7 @@ export default function Search(){
     const [errorMsg, setErrorMsg] = useState("");
 
     useEffect(()=>{
-        fetch(`https://ecom-f5re.onrender.com/search?keywords=${search}`)
+        fetch(`/search?keywords=${search}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

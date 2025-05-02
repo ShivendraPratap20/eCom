@@ -137,7 +137,7 @@ export default function SignIn() {
             });
         },
         onSubmit: (values, action) => {
-            fetch("https://ecom-f5re.onrender.com/login", {
+            fetch("/login", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json"

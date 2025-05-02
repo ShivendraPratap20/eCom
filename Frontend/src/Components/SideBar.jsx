@@ -119,7 +119,7 @@ const SideBar = () => {
   const { authorized,  loading, error, userData, verifyAuth} = useAuth();
 
   const removeProductFromCart = (userID, productID)=>{
-    fetch(`https://ecom-f5re.onrender.com/removeProduct?userID=${userID}&productID=${productID}`, {
+    fetch(`/removeProduct?userID=${userID}&productID=${productID}`, {
       method: 'DELETE',
     })
       .then(response => response.json())

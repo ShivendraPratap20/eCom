@@ -135,7 +135,7 @@ export default function ProductContainer({ productDt, search }) {
         if(!loading){
             if(authorized){
                 try {
-                    const response = await fetch('https://ecom-f5re.onrender.com/addProduct', {
+                    const response = await fetch('/addProduct', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'

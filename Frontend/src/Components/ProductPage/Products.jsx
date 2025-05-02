@@ -18,7 +18,7 @@ export default function Products() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const category = queryParams.get('category');
-    const URL = `https://ecom-f5re.onrender.com/categoryDt/${category}`;
+    const URL = `/categoryDt/${category}`;
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState(null);
     const [errorMsg, setErrorMsg] = useState("");

@@ -181,7 +181,7 @@ export default function SingleProduct() {
     const {userData, authorized, loading} = useAuth();
 
     useEffect(() => {
-        fetch(`https://ecom-f5re.onrender.com/singlePdt/?category=${category}&_id=${_id}`)
+        fetch(`/?category=${category}&_id=${_id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -209,7 +209,7 @@ export default function SingleProduct() {
         if(!loading){
             if(authorized){
                 try {
-                    const response = await fetch('https://ecom-f5re.onrender.com/addProduct', {
+                    const response = await fetch('/addProduct', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'
