@@ -43,7 +43,7 @@ const userSchema = new mong.Schema({
 
 userSchema.methods.generateToken = async function(){
     try {
-        const token = await jwt.sign({_id:this._id}, process.env.SECRET_KEY);
+        const token = await jwt.sign({_id:this._id}, "asdfghjklzxcvbnmqwertyuiop");
         console.log(`Token generated at generate token function ${token}`);
         this.tokens=this.tokens.concat({token:token});
         await this.save();

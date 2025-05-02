@@ -8,7 +8,7 @@ const auth = async (req, res, next)=>{
         if(userToken == undefined) {
             throw new Error(`User token is undefined`);
         }
-        const {_id, iat} = jwt.verify(userToken, process.env.SECRET_KEY);
+        const {_id, iat} = jwt.verify(userToken, "asdfghjklzxcvbnmqwertyuiop");
         const userID = _id;
         const objId = new ObjectId(userID);
         const userData = await UserModel.find({ _id: objId });
