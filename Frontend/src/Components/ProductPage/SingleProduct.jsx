@@ -181,7 +181,7 @@ export default function SingleProduct() {
     const {userData, authorized, loading} = useAuth();
 
     useEffect(() => {
-        fetch(`/?category=${category}&_id=${_id}`)
+        fetch(`/singlePdt/?category=${category}&_id=${_id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -251,7 +251,7 @@ export default function SingleProduct() {
                                         >Add to Cart</button>
                                         <button id="order"
                                             onClick={()=>{
-                                                authorized? (navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, price: val.salePrice, imageURL:val.imageURL}]))}`)) : (toast.error("Login first"));
+                                                authorized? (navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, salePrice: val.salePrice, imageURL:val.imageURL}]))}`)) : (toast.error("Login first"));
                                             }}
                                         >Order Now</button>
                                     </ButtonContainer>

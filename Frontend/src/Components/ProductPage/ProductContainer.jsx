@@ -190,7 +190,7 @@ export default function ProductContainer({ productDt, category }) {
                                     <button id="buy"
                                         onClick={(e)=>{
                                             e.stopPropagation();
-                                            (authorized)? ((navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, price: val.salePrice, imageURL:val.imageURL}]))}`))):(toast.error("Login First"))
+                                            (authorized)? ((navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, salePrice: val.salePrice, imageURL:val.imageURL}]))}`))):(toast.error("Login First"))
                                         }}
                                     >Buy Now</button>
                                 </div>
