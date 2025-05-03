@@ -1,104 +1,149 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Menu from "./Home/Menu";
 import ContextProvider from "../ContextProvider";
+import Footer from "./Footer";
 
 const Container = styled.div`
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    width:60%;
-    height:300px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
-    background-color:#ECE7E2;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius:10px;
-    padding:15px;
-    text-align:center;
-    h1{
-        color:#4A7766;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: #ECE7E2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    
+    h1 {
+        color: #4A7766;
+        font-size: 1.8em;
+        margin: 0;
     }
-    textarea{
-        background-color:whitesmoke;
-        padding:10px;
-        color:black;
-        width:70%;
-        border-radius:10px;
-        border:none;
-        outline:none;
-        &:focus{
-            border:3px solid #4A7766;
+    
+    h4 {
+        font-size: 1.2em;
+        margin: 0;
+    }
+    
+    textarea {
+        background-color: whitesmoke;
+        padding: 10px;
+        color: black;
+        width: 100%;
+        max-width: 500px;
+        min-height: 100px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        resize: vertical;
+        
+        &:focus {
+            border: 2px solid #4A7766;
         }
     }
-    button{
-        padding:10px;
-        border-radius:10px;
-        background-color:#4A7766;
-        color:whitesmoke;
-        font-size:1.3em;
-        width:30%;
+    
+    button {
+        padding: 12px 20px;
+        border-radius: 8px;
+        background-color: #4A7766;
+        color: whitesmoke;
+        font-size: 1em;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+            background-color: #3E6254;
+        }
     }
-    .success{
-        color:#4A7766;
+    
+    .success {
+        color: #4A7766;
+        font-size: 1em;
     }
-    @media (max-width: 767.98px){
-        width:80%;
+    
+    .failed {
+        color: red;
+        font-size: 1em;
+    }
+    
+    @media (max-width: 575px) {
+        padding: 15px;
+        h1 {
+            font-size: 1.5em;
+        }
+        h4 {
+            font-size: 1em;
+        }
+        textarea {
+            font-size: 0.9em;
+        }
+        button {
+            max-width: 150px;
+            font-size: 0.9em;
+            padding: 10px 15px;
+        }
     }
 `;
 
-export default function Help(){
-    const [ques, setQues] = useState(null);
+export default function Help() {
+    const [ques, setQues] = useState("");
     const [error, setError] = useState(null);
-    const [message, setMessage] = useState(null)
-    const handler = ()=>{
-        fetch("/help", {
+    const [message, setMessage] = useState(null);
+
+    const handler = () => {
+        fetch("http://localhost:8000/help", {
             method: "POST",
             headers: {
                 'Content-Type': "application/json"
             },
-            body: JSON.stringify({ques}),
+            body: JSON.stringify({ ques }),
             credentials: "include"
         })
             .then(response => response.json())
             .then(data => {
-                if (data.STATUS === "SUCCESS") { 
-                    setError(false); 
+                if (data.STATUS === "SUCCESS") {
+                    setError(false);
                     setMessage(data.message);
-                } else if (data.STATUS === "FAILED") {
+                } else {
+                    setError(true);
+                    setMessage(data.message || "Failed to submit question");
                 }
             })
             .catch((error) => {
-                setError(true)
-                setMessage(data.message);
+                setError(true);
+                setMessage("Error submitting question");
                 console.log("Error while questioning", error);
             });
-    }
+    };
 
-    return(
+    return (
         <ContextProvider>
-            <Menu/>
+            <Menu />
             <Container>
-                <h1>Any Question?</h1>
-                <h4>Put your question and we will help you</h4>
-                <textarea type="text" name="question" id="question" placeholder="Ask your Question" 
-                    onChange={(e)=>{setInterval(()=>{
-                        setQues(e.target.value);
-                    }), 1000}}
+                <h1>Any Questions?</h1>
+                <h4>Submit your question and we will help you</h4>
+                <textarea
+                    name="question"
+                    id="question"
+                    placeholder="Ask your question"
+                    value={ques}
+                    onChange={(e) => setQues(e.target.value)}
                 />
-                <button onClick={()=>{handler()}}>Post</button>
-                {
-                    (!error)? (
-                        <div className="success">{message}</div>
-                    ):(
-                        <div className="failed">{message}</div>
-                    )
-                }
-        </Container>
+                <button onClick={handler}>Post</button>
+                {message && (
+                    <div className={error ? "failed" : "success"}>{message}</div>
+                )}
+            </Container>
+            <Footer/>
         </ContextProvider>
-    )
+    );
 }

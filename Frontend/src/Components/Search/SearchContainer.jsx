@@ -6,121 +6,107 @@ import useAuth from "../../Auth/Auth";
 import { toast } from 'react-toastify';
 
 const CardContainer = styled.div`
-    display:flex;
-    padding:10px;
-    flex-direction:column;
-    gap:5px;
-    width:79%;
-    @media (min-width: 576px) and (max-width: 767.98px){
-        width:60%;
-    }
-    @media (max-width:575px){
-        width:50%;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    @media (min-width: 768px) {
+        width: 80%;
     }
 `;
+
 const CardHolder = styled.div`
-    background-color:#ECE7E2;
-    width:100%;
-    display:grid;
-    gap:10px 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding:5px;
-    a{
-        text-decoration:none;
-        color:black;
+    background-color: #ECE7E2;
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 10px;
+    a {
+        text-decoration: none;
+        color: black;
     }
-    @media (max-width:575px){
-        grid-template-columns: 1fr 1fr;
+    @media (max-width: 575px) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
-    @media (min-width: 576px) and (max-width: 767.98px){
-        grid-template-columns: 1fr 1fr;
-    }
-    @media (min-width: 768px) and (max-width: 1199.98px ) {
-        grid-template-columns: 1fr 1fr 1fr;
-    }    
-`
+`;
+
 const Card = styled.div`
-    display:grid;
-    grid-template-columns:100%;
-    grid-template-rows:auto auto;
-    gap:5px 5px;
-    background-color:whitesmoke;
-    width:100%;
-    padding:10px;
-    &:hover{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        cursor:pointer;
-    }
-    .img-container{
-        width:100%;
-        display:flex;
-        justify-content:center;
-    }
-    img{
-        width:200px;
-        height:200px;
-    }
-    .txt-container{
-        display:flex;
-        flex-direction:column;
-         p, h5, h6{
-            margin:0;
-        }   
-        span{
-    	    color:#4A7766;
-            font-weight:bold;
-            font-size:2.5em;
-        }
-    }
-        .btn-container{
-            width:100%;
-            display:flex;
-            gap:5px;
-            button{
-                padding:10px;
-                border-radius:10px;
-                width:49%;
-                z-index:5;
-            }
-            #cart{
-                background:transparent;
-                color:#4A7766;
-                border:1px solid #4A7766;
-                &:hover{
-                    background-color: #3E6254;
-                    color:white;
-            }
-            }
-            #buy{
-                background-color:#4A7766;
-                border:none;
-                color:whitesmoke;
-                &:hover{
-                    background-color: #3E6254;
-            }
-            }
-            
-        }
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+    background-color: whitesmoke;
+    padding: 12px;
+    transition: box-shadow 0.3s ease;
     
-    @media (max-width: 575px ){
-        img{
-            width:70px;
-            height:70px;
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+
+    .img-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+
+    .txt-container {
+        display: flex;
+        flex-direction: column;
+        p, h5, h6 {
+            margin: 2px 0;
         }
-        h6{
-            font-size:.8rem;
+        span {
+            color: #4A7766;
+            font-weight: bold;
+            font-size: 1.8em;
         }
     }
-    @media (min-width: 576px) and (max-width: 767.98px){
-        img{
-            width:110px;
-            height:110px;
+
+    .btn-container {
+        display: flex;
+        gap: 8px;
+        button {
+            padding: 8px;
+            border-radius: 8px;
+            flex: 1;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #cart {
+            background: transparent;
+            color: #4A7766;
+            border: 1px solid #4A7766;
+            &:hover {
+                background-color: #3E6254;
+                color: white;
+            }
+        }
+        #buy {
+            background-color: #4A7766;
+            border: none;
+            color: whitesmoke;
+            &:hover {
+                background-color: #3E6254;
+            }
         }
     }
-    @media (min-width: 768px) and (max-width: 1199.98px) {
-        img{
-            width:140px;
-            height:140px;
+
+    @media (max-width: 575px) {
+        padding: 8px;
+        h6 {
+            font-size: 0.85rem;
         }
     }
 `;
@@ -135,7 +121,7 @@ export default function ProductContainer({ productDt, search }) {
         if(!loading){
             if(authorized){
                 try {
-                    const response = await fetch('/addProduct', {
+                    const response = await fetch('http://localhost:8000/addProduct', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'
@@ -191,7 +177,7 @@ export default function ProductContainer({ productDt, search }) {
                                     <button id="buy"
                                        onClick={(e)=>{
                                         e.stopPropagation();
-                                        (authorized)? ((navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, salePrice: val.salePrice, imageURL:val.imageURL}]))}`))):(toast.error("Login First"))  
+                                        (authorized)? ((navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, price: val.salePrice, imageURL:val.imageURL}]))}`))):(toast.error("Login First"))  
                                     }} 
                                     >Buy Now</button>
                                 </div>

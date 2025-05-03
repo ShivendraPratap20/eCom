@@ -2,62 +2,81 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const FilterContainer = styled.div`
-    display:flex;
-    padding:10px;
-    width:20%;
-    flex-direction:column;
-    background-color:#ECE7E2;
-    @media (min-width: 576px) and (max-width: 867px){
-        width:40%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #ECE7E2;
+    width: 250px;
+    transition: transform 0.3s ease-in-out;
+    
+    @media (min-width: 768px) {
+        transform: translateX(0);
+        position: static;
     }
-    @media (max-width:575px){
-        width:50%;
+
+    @media (max-width: 767px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 999;
+        transform: ${({ showFilter }) => showFilter ? 'translateX(0)' : 'translateX(-100%)'};
+        width: 80%;
+        max-width: 300px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2);
     }
 `;
+
 const ItemContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    align-items:space-between;
-    justify-content:center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 `;
+
 const Item = styled.div`
-    display:flex;
-    flex-direction:column;
-    padding:10px;
-    gap:5px;
-    div{
-        font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+    
+    div {
+        font-size: 1.2em;
         font-weight: 500;
     }
-    .categoryName{
-        background-color:#4A7766;
-        color:whitesmoke;
-        padding:5px;
-        border-radius:30px; 
-        text-align:center;
-        font-size:1.2em;
-        font-weight:500;
+
+    .categoryName {
+        background-color: #4A7766;
+        color: whitesmoke;
+        padding: 6px 12px;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 1.1em;
     }
-    .brand-holder{
-        font-size:0.8em;
+
+    .brand-holder {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: 0.9em;
     }
-    .brands{
-        display:flex;
-        gap:5px;
-        width:100%;
-        flex-wrap:wrap;
-        span{
-            font-size:0.8em;
-            background-color:#4A7766;
-            color:whitesmoke;
-            padding:5px;
-            border-radius:5px;
-            font-weight:400;
+
+    .brands {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 10px;
+        
+        span {
+            background-color: #4A7766;
+            color: whitesmoke;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
         }
     }
 `;
 
-export default function FilterMenu({productDt, search}) {
+export default function FilterMenu({productDt, search, showFilter, setShowFilter}) {
     const [category, setCategory] = useState([]);
     const handleChange = (item) => {
         setCategory((prev) => {
@@ -70,7 +89,7 @@ export default function FilterMenu({productDt, search}) {
       };
 
     return (
-        <FilterContainer>
+        <FilterContainer showFilter={showFilter}>
             <h2>Filters</h2>
             <ItemContainer>
                 <Item>

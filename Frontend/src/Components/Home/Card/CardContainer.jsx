@@ -24,6 +24,11 @@ const Container = styled.div`
             display:grid;
             grid-template-rows :auto auto auto;
             grid-template-columns : auto auto auto;
+        }
+         @media (max-width: 512.98px){
+            display:grid;
+            grid-template-rows :auto auto;
+            grid-template-columns : auto auto;
         }   
     `
 export default function CardContainer(){

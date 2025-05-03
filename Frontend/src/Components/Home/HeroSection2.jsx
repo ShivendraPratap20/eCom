@@ -54,6 +54,7 @@ const Wrapper = styled.div`
     }
     .card-button{
     	background-color:#4A7766;
+      color:whitesmoke;
         padding:10px;
         width:70%;
         border:none;
