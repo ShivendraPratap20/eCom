@@ -111,15 +111,15 @@ export default function Feature() {
       <H2>We Guarantee</H2>
       <Wrapper>
         <Card>
-          <img src="/images/delivery.png" alt="Fast delivery truck icon" />
+          <img src="https://res.cloudinary.com/dqraj6g9a/image/upload/v1746162101/delivery_wfulge.png" alt="Fast delivery truck icon" />
           <h4>Fast Delivery</h4>
         </Card>
         <Card>
-          <img src="/images/quality.png" alt="Quality assurance badge icon" />
+          <img src="https://res.cloudinary.com/dqraj6g9a/image/upload/v1746162101/quality_hqauyu.png" alt="Quality assurance badge icon" />
           <h3>Quality Products</h3>
         </Card>
         <Card>
-          <img src="/images/replace.png" alt="Return/Exchange arrows icon" />
+          <img src="https://res.cloudinary.com/dqraj6g9a/image/upload/v1746162101/replace_pdzy8w.png" alt="Return/Exchange arrows icon" />
           <h3>Easy Returns & Replacements</h3>
         </Card>
       </Wrapper>
