@@ -119,7 +119,7 @@ const SideBar = () => {
   const { authorized,  loading, error, userData, verifyAuth} = useAuth();
 
   const removeProductFromCart = (userID, productID)=>{
-    fetch(`http://localhost:8000/removeProduct?userID=${userID}&productID=${productID}`, {
+    fetch(`/removeProduct?userID=${userID}&productID=${productID}`, {
       method: 'DELETE',
     })
       .then(response => response.json())

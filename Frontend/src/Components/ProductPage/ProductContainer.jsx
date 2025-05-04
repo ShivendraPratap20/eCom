@@ -122,7 +122,7 @@ export default function ProductContainer({ productDt, category }) {
         if (!loading) {
             if (authorized) {
                 try {
-                    const response = await fetch('http://localhost:8000/addProduct', {
+                    const response = await fetch('/addProduct', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -199,7 +199,7 @@ export default function ProductContainer({ productDt, category }) {
                                             _id: val._id,
                                             name: val.name,
                                             category: val.category,
-                                            price: val.salePrice,
+                                            salePrice: val.salePrice,
                                             imageURL: val.imageURL
                                         }]))}`)
                                         : toast.error("Login First");

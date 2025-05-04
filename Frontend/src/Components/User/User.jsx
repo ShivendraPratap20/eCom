@@ -156,7 +156,7 @@ export default function User() {
     const navigate = useNavigate();
 
     const setAddress = (userID, adrs) => {
-        fetch("http://localhost:8000/setAddress", {
+        fetch("/setAddress", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -174,7 +174,7 @@ export default function User() {
     }
 
     const logout = () => {
-        fetch("http://localhost:8000/logout", {
+        fetch("/logout", {
             method: "GET",
             credentials: "include"
         })

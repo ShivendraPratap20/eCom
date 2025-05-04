@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 const H2 = styled.h2`
   color: #4A7766;
   text-align: center;
-  padding: 15px 10px; /* Added vertical padding for better spacing */
-  font-size: 2em; /* Slightly larger for better visibility */
-
+  padding: 15px 10px; 
+  font-size: 2em;
   @media (max-width: 768px) {
     font-size: 1.75em;
     padding: 10px;
@@ -20,49 +19,47 @@ const H2 = styled.h2`
 `;
 
 const TabContainer = styled.div`
-  width: 95%; /* Take up more width on smaller screens */
-  max-width: 600px; /* Maintain a maximum width on larger screens */
+  width: 95%; 
+  max-width: 600px; 
   background-color: #ECE7E2;
-  padding: 15px 10px; /* Adjusted padding */
+  padding: 15px 10px; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 15px auto; /* Added vertical margin for spacing */
+  margin: 15px auto; 
   border-radius: 10px;
-  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-x: auto; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-  /* Styling the scrollbar for WebKit browsers (Chrome, Safari) */
   &::-webkit-scrollbar {
-    height: 8px; /* Adjust height as needed */
-    background-color: #f1f1f1; /* Color of the track */
+    height: 8px; 
+    background-color: #f1f1f1; 
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #4A7766; /* Color of the thumb */
+    background-color: #4A7766; 
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: #3E6254; /* Darker color on hover */
+    background-color: #3E6254; 
   }
 
-  /* Styling the scrollbar for Firefox */
   scrollbar-width: thin;
   scrollbar-color: #4A7766 #f1f1f1;
 `;
 
 const TabCard = styled.div`
-  padding: 10px; /* Increased padding for better touch area */
+  padding: 10px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px; /* Increased gap */
-  flex-shrink: 0; /* Prevent shrinking to maintain equal spacing */
-  width: auto; /* Adjust width based on content */
-  margin: 0 5px; /* Add some horizontal margin between cards */
+  gap: 8px; 
+  flex-shrink: 0; 
+  width: auto; 
+  margin: 0 5px; 
 
   &:first-child {
     margin-left: 0;
@@ -74,7 +71,7 @@ const TabCard = styled.div`
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.05); /* Add a subtle hover effect */
+    transform: scale(1.05); 
     transition: transform 0.2s ease-in-out;
   }
 
@@ -85,10 +82,10 @@ const TabCard = styled.div`
 `;
 
 const TabCardImg = styled.img`
-  width: 70px; /* Slightly smaller on larger screens */
+  width: 70px; 
   height: 70px;
   border-radius: 10px;
-  object-fit: cover; /* Ensure images fit nicely */
+  object-fit: cover; 
 
   @media (max-width: 768px) {
     width: 60px;
@@ -103,9 +100,9 @@ const TabCardImg = styled.img`
 
 const TabCardText = styled.p`
   text-align: center;
-  font-size: 1em; /* Adjusted font size */
+  font-size: 1em; 
   font-weight: 450;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap; 
 
   @media (max-width: 768px) {
     font-size: 0.9em;
@@ -134,7 +131,7 @@ export default function Tab() {
                 navigate(`/products?category=${encodeURIComponent(val.category)}`)
               }
             >
-              <TabCardImg src={val.imageURL} alt={val.text} /> {/* Added alt attribute for accessibility */}
+              <TabCardImg src={val.imageURL} alt={val.text} /> 
               <TabCardText>{val.text}</TabCardText>
             </TabCard>
           ))

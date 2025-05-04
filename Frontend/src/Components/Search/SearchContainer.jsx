@@ -121,12 +121,18 @@ export default function ProductContainer({ productDt, search }) {
         if(!loading){
             if(authorized){
                 try {
-                    const response = await fetch('http://localhost:8000/addProduct', {
+                    const response = await fetch('/addProduct', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json'
                       },
-                      body: JSON.stringify({userID:userData._id, pID:val._id, pName: val.name, pCategory:val.category, pPrice: val.salePrice, pImage:val.imageURL})
+                      body: JSON.stringify({
+                        userID: userData._id,
+                        pID: val._id,
+                        pName: val.name,
+                        pCategory: val.category,
+                        pPrice: val.salePrice,
+                        pImage: val.imageURL})
                     });
                 
                     if (!response.ok) {
@@ -177,7 +183,7 @@ export default function ProductContainer({ productDt, search }) {
                                     <button id="buy"
                                        onClick={(e)=>{
                                         e.stopPropagation();
-                                        (authorized)? ((navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, price: val.salePrice, imageURL:val.imageURL}]))}`))):(toast.error("Login First"))  
+                                        (authorized)? ((navigate(`/payment?pd=${encodeURIComponent(JSON.stringify([{userID:userData._id, _id:val._id, name: val.name, category:val.category, salePrice: val.salePrice, imageURL:val.imageURL}]))}`))):(toast.error("Login First"))  
                                     }} 
                                     >Buy Now</button>
                                 </div>

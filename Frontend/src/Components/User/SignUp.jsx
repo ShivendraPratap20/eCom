@@ -162,7 +162,7 @@ export default function SignUp() {
         },
         validationSchema: ValidationSchema,
         onSubmit: (values, action) => {
-            fetch("http://localhost:8000/register", {
+            fetch("/register", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json"
@@ -195,7 +195,7 @@ export default function SignUp() {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <Container>
                     <Left>
-                        <img src="/images/logo.png" alt="Logo" />
+                        <img src="https://res.cloudinary.com/dqraj6g9a/image/upload/v1745584931/logo_oehann.png" alt="Logo" />
                         <h2>Welcome!</h2>
                         <div>
                             <h5>SignUp</h5>

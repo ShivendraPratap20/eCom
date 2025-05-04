@@ -281,7 +281,7 @@ export default function SingleProduct() {
     const { userData, authorized, loading } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:8000/singlePdt/?category=${category}&_id=${_id}`)
+        fetch(`/singlePdt/?category=${category}&_id=${_id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -307,7 +307,7 @@ export default function SingleProduct() {
         if (!loading) {
             if (authorized) {
                 try {
-                    const response = await fetch('http://localhost:8000/addProduct', {
+                    const response = await fetch('/addProduct', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Menu from "./Home/Menu";
 import useAuth from "../Auth/Auth";
@@ -73,7 +73,22 @@ const Bill = styled.div`
         }
     }
 `;
-
+const CheckBox = styled.div`
+    input[type="radio"] {
+        accent-color: #4A7766;
+        transform: scale(1.5); 
+    margin-right: 8px;     
+    }
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1em;
+    font-weight: 500;
+    @media (max-width:575px){
+        flex-direction:column;
+        gap:5px;
+    }
+`;
 const PaymentBox = styled.div`
     padding: 15px;
     background-color: whitesmoke;
@@ -225,8 +240,12 @@ export default function Payment() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const pdParam = queryParams.get("pd");
-
+    const [display, setDisplay] = useState(false);
+    const inputRef = useRef();
     let productData = [];
+    const handleRadioChange = (value) => {
+        setDisplay(value === 'show');
+    };
 
     try {
         if (pdParam) {
@@ -236,17 +255,32 @@ export default function Payment() {
     } catch (error) {
         console.error("Invalid JSON in URL", error);
     }
-
+    const setAddress = (userID, adrs) => {
+        fetch("/setAddress", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ _id: userID, address: adrs })
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log("Success:", result);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
     async function placeOrder() {
         if (!loading) {
             if (authorized) {
                 try {
-                    const response = await fetch('http://localhost:8000/orders', {
+                    const response = await fetch('/orders', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ productArray: productData })
+                        body: JSON.stringify({ productArray: productData, userID: userData._id })
                     });
 
                     if (!response.ok) {
@@ -258,6 +292,7 @@ export default function Payment() {
                     toast.success("Order Placed");
                     verifyAuth();
                     navigate("/checkout");
+                    setAddress(userData._id, inputRef.current.value);
                 } catch (error) {
                     console.error('Error:', error);
                 }
@@ -271,7 +306,6 @@ export default function Payment() {
     useEffect(() => {
         verifyAuth();
     }, []);
-
     const { values, errors, handleChange, handleBlur, handleSubmit, touched } = useFormik({
         initialValues: {
             name: "",
@@ -286,7 +320,6 @@ export default function Payment() {
     });
 
     if (loading) return <div>Loading...</div>;
-
     return (
         <ContextProvider>
             <Menu />
@@ -297,7 +330,7 @@ export default function Payment() {
                             <h4>Billing Info</h4>
                             <h5>{userData.name.length > 15 ? `${userData.name.slice(0, 15)}...` : userData.name}</h5>
                             <p>{userData.phone}</p>
-                            {(userData.address == undefined || userData.address == null)? (
+                            {userData.address == undefined || userData == null ? (
                                 <>
                                     <input
                                         type="text"
@@ -307,6 +340,7 @@ export default function Payment() {
                                         value={values.address}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        ref={inputRef}
                                     />
                                     {touched.address && errors.address && <div style={{ color: "red" }}>{errors.address}</div>}
                                 </>
@@ -314,71 +348,103 @@ export default function Payment() {
                                 <p>{(values.address = userData.address)}</p>
                             )}
                         </Bill>
+                        <CheckBox>
+                            <div>
+                                <input
+                                    type="radio"
+                                    name="payment"
+                                    checked={display}
+                                    onChange={() => handleRadioChange('show')}
+                                />
+                                <label htmlFor="cod">Cash On Delivery</label>
+                            </div>
+                            <div>
+                                <input
+                                    type="radio"
+                                    checked={!display}
+                                    onChange={() => handleRadioChange('none')}
+                                    name="payment"
+                                />
+                                <label htmlFor="online">Online Payment</label>
+                            </div>
+                        </CheckBox>
                         <PaymentBox>
                             <h3>Payment Details</h3>
-                            <form onSubmit={handleSubmit}>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    placeholder="Name on Card"
-                                    value={values.name}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {touched.name && errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
-
-                                <input
-                                    type="text"
-                                    name="cardNumber"
-                                    id="cardNumber"
-                                    placeholder="Card Number"
-                                    value={values.cardNumber}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {touched.cardNumber && errors.cardNumber && <div style={{ color: "red" }}>{errors.cardNumber}</div>}
-
-                                <div className="monthAndYear">
-                                    <select
-                                        name="expiryMonth"
-                                        value={values.expiryMonth}
+                            {(display) ?
+                                (
+                                    <button onClick={() => {
+                                        const value = inputRef.current?.value?.trim();
+                                        if (!value & !values.address) {
+                                            toast.error("Please add address");
+                                            console.log("add err");
+                                            return;
+                                        }
+                                        placeOrder()
+                                    }
+                                    }>Pay</button>
+                                )
+                                :
+                                (<form onSubmit={handleSubmit}>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                        placeholder="Name on Card"
+                                        value={values.name}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                    >
-                                        <option value="">Select Expiry Month</option>
-                                        {months.map(month => (
-                                            <option key={month} value={month}>{month}</option>
-                                        ))}
-                                    </select>
-                                    {touched.expiryMonth && errors.expiryMonth && <div style={{ color: "red" }}>{errors.expiryMonth}</div>}
-
-                                    <select
-                                        name="expiryYear"
-                                        value={values.expiryYear}
+                                    />
+                                    {touched.name && errors.name && <div style={{ color: "red" }}>{errors.name}</div>}
+                                    <input
+                                        type="text"
+                                        name="cardNumber"
+                                        id="cardNumber"
+                                        placeholder="Card Number"
+                                        value={values.cardNumber}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                    >
-                                        <option value="">Select Expiry Year</option>
-                                        {years.map(year => (
-                                            <option key={year} value={year}>{year}</option>
-                                        ))}
-                                    </select>
-                                </div>
+                                    />
+                                    {touched.cardNumber && errors.cardNumber && <div style={{ color: "red" }}>{errors.cardNumber}</div>}
 
-                                <input
-                                    type="text"
-                                    name="cvv"
-                                    id="cvv"
-                                    placeholder="CVV"
-                                    value={values.cvv}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                {touched.cvv && errors.cvv && <div style={{ color: "red" }}>{errors.cvv}</div>}
+                                    <div className="monthAndYear">
+                                        <select
+                                            name="expiryMonth"
+                                            value={values.expiryMonth}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        >
+                                            <option value="">Select Expiry Month</option>
+                                            {months.map(month => (
+                                                <option key={month} value={month}>{month}</option>
+                                            ))}
+                                        </select>
+                                        {touched.expiryMonth && errors.expiryMonth && <div style={{ color: "red" }}>{errors.expiryMonth}</div>}
 
-                                <button type="submit">Pay</button>
-                            </form>
+                                        <select
+                                            name="expiryYear"
+                                            value={values.expiryYear}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        >
+                                            <option value="">Select Expiry Year</option>
+                                            {years.map(year => (
+                                                <option key={year} value={year}>{year}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+                                    <input
+                                        type="text"
+                                        name="cvv"
+                                        id="cvv"
+                                        placeholder="CVV"
+                                        value={values.cvv}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    />
+                                    {touched.cvv && errors.cvv && <div style={{ color: "red" }}>{errors.cvv}</div>}
+                                    <button type="submit">Pay</button>
+                                </form>)}
                         </PaymentBox>
                     </Left>
                     <Right>

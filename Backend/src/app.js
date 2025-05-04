@@ -144,10 +144,10 @@ app.post("/addProduct", async (req, res) => {
 
 app.post("/orders", async (req, res) => {
     try {
-        const {productArray} = req.body;
+        const {productArray, userID} = req.body;
         console.log(productArray);
         productArray.map(async (item, index)=>{
-            const objID = new ObjectId(item.userID);
+            const objID = new ObjectId(userID);
             const user = await UserModel.findOneAndUpdate({ _id: objID }, {
             $push: {
                 orders: {

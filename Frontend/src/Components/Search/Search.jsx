@@ -52,7 +52,7 @@ export default function Search(){
     
 
     useEffect(()=>{
-        fetch(`http://localhost:8000/search?keywords=${search}`)
+        fetch(`/search?keywords=${search}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
