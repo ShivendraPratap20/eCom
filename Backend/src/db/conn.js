@@ -7,4 +7,13 @@ mong.connect(`mongodb+srv://shivendragkp2002:cfoyy77JeJNth3Qy@cluster0.b6cs8fs.m
     console.log(`Error occured while connecting with database ${err}`);
 });
 
+async function getCollections(params) {
+    try {
+        const collectionArray = await mong.listCollections
+    } catch (error) {
+        console.log(`Collection error ${error}`)
+    }
+    
+}
+
 module.exports = mong;
