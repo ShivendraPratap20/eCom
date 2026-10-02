@@ -1,11 +1,24 @@
 const bcrypt = require("bcryptjs");
+import type { Request, Response, NextFunction } from "express";
 const UserModel = require("../db/Models/Users");
 
-const login = async (req, res) => {
+type userStruct = {
+    username: string,
+    userpassword: string,
+    name?: string,
+    email?: string,
+    phone?: number,
+    password?: string | undefined,
+    confirmPassword?: string,
+    gender?: string,
+    _id?: string,
+    address?: string
+}
+
+const login = async (req: Request, res: Response) => {
     try {
-        const { username, userpassword } = req.body;
+        const { username, userpassword }: userStruct = req.body;
         const userData = await UserModel.find({ email: username });
-        console.log(username);
         if (userData[0] == undefined) {
             res.status(404).json({ status: "FAILED", message: "User doesn't exists" });
             return;
@@ -21,7 +34,6 @@ const login = async (req, res) => {
             secure: true,
             maxAge: 30 * 24 * 60 * 60 * 1000
         });
-        console.log(req.cookies.JWT);
         res.status(202).json({ status: "SUCCESS", message: "Login Success", userData: userData[0] });
     } catch (error) {
         console.log(`Login Error ${error}`);
@@ -29,8 +41,8 @@ const login = async (req, res) => {
     }
 };
 
-const register = async (req, res) => {
-    const { name, email, phone, password, confirmPassword, gender } = req.body;
+const register = async (req:Request, res:Response) => {
+    const { name, email, phone, password, confirmPassword, gender }: userStruct = req.body;
     try {
         const existsData = await UserModel.find({ email: email });
         if (existsData[0] != undefined) {
@@ -56,7 +68,7 @@ const register = async (req, res) => {
     }
 };
 
-const logout = (req, res) => {
+const logout = (req:Request, res:Response) => {
     try {
         console.log(req.cookies.JWT);
         res.clearCookie("JWT");
@@ -67,12 +79,10 @@ const logout = (req, res) => {
     }
 };
 
-const setAddress = async (req, res) => {
+const setAddress = async (req:Request, res:Response) => {
     try {
 
         const { _id, address } = req.body;
-        console.log(_id);
-        console.log(address);
         const updatedUser = await UserModel.findByIdAndUpdate(
             _id,
             { address },

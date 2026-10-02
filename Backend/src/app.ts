@@ -1,17 +1,14 @@
 const path = require("path");
-//require('dotenv').config();
 const express = require("express");
+import type { Request, Response, NextFunction } from "express";
 const cors = require("cors");
 const app = express();
-const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const auth = require("./middleware/auth");
-const fs = require("fs");
 const PORT = process.env.PORT || 8000;
 require("./db/conn");
 
-const userRouter = require("./routes/userRouter");
-const productsRouter = require("./routes/productRouter");
+const { userRouter, productsRouter } = require("./routes/");
 
 app.use(express.json());
 app.use(cors({
@@ -21,13 +18,13 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../Frontend/build')));
 
-app.get("/verification", auth, (req, res) => {});
+app.get("/verification", auth, (req: Request, res: Response) => {});
 app.use("", userRouter);
 app.use("", productsRouter);
 
 
 
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
     res.sendFile(path.join(__dirname, '../../Frontend/build', 'index.html'));
   });
 
