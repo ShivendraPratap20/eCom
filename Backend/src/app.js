@@ -10,8 +10,7 @@ const fs = require("fs");
 const PORT = process.env.PORT || 8000;
 require("./db/conn");
 
-const userRouter = require("./routes/userRouter");
-const productsRouter = require("./routes/productRouter");
+const { userRouter, productsRouter } = require("./routes/");
 
 app.use(express.json());
 app.use(cors({

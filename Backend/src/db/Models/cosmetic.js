@@ -1,4 +1,5 @@
 const mong = require("mongoose");
+const productBaseModel = require("./Product");
 
 const cosmeticDataSchema = new mong.Schema({
     name: { type: String },
