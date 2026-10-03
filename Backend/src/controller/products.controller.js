@@ -1,8 +1,10 @@
-const mong = require("../db/conn");;
+const fs = require("fs");
+const mong = require("../db/conn");
 const { ObjectId } = require('mongodb');
 const hmdt = require("../../hmdt.json");
 const UserModel = require("../db/Models/Users");
 const getCollections = require("../getCollections");
+const productBaseModel = require("../db/Models/Product");
 
 const getHomeData = (req, res) => {
     res.status(202).json(hmdt);
@@ -170,6 +172,85 @@ const customerHelp = (req, res) => {
     res.json({ "STATUS": "SUCCESS", "message": "Send" })
 };
 
+const getProducts = async (req, res) => {
+    try {
+        const { page } = req.query;
+        if (!page)
+            return res.status(400).json({
+                status: false,
+                message: 'Page number is missing',
+                error: {
+                    code: '[PAGE_REQUIRED]',
+                    details: null
+                }
+            });
+
+        let currentPage = parseInt(page);
+
+        if (!(Number.isInteger(currentPage)))
+            return res.status(400).json({
+                status: false,
+                message: 'Invalid page number',
+                error: {
+                    code: '[INVALID_PAGE]',
+                    details: null
+                }
+            });
+
+        let limit = 6;
+        let offset = Math.max(1, (currentPage - 1) * limit);
+
+        const [data, totalDocuments] = await Promise.all([
+            productBaseModel.find({}).skip(offset).limit(limit),
+            productBaseModel.find({}).countDocuments()
+        ]);
+
+        const totalPage = Math.ceil(totalDocuments/limit);
+
+        res.json({
+            status: true,
+            data,
+            pagination: {
+                requestedPage: currentPage,
+                nextPage: currentPage < totalPage? currentPage + 1 : null,
+                totalPage,
+                limit,
+                totalProducts: totalDocuments,
+            }
+        })
+
+    } catch (error) {
+        console.log(`[GET_PRODUCTS_ERROR] ${error}`);
+        res.status(505).json({
+            status: false,
+            message: 'Internal server error',
+            error: {
+                code: `GET_PRODUCTS_ERROR`,
+                details: `Error occure while retrieving products ${error}`
+            }
+        })
+    }
+};
+
+const addProductToDB = async (req, res) => {
+    try {
+        const data = await fs.readFileSync("/home/cvendra/Downloads/smartphones.json", 'utf-8');
+        const jsonData = JSON.parse(data);
+        const uploadData = await productBaseModel.create(jsonData);
+        res.status(201).json({ status: true, message: 'Resource created' });
+    } catch (error) {
+        console.log(`[ADD_PRODUCT_ERR] ${error}`);
+        res.status(505).json({
+            status: false,
+            message: 'Internal server error',
+            error: {
+                code: `ADD_PRODUCT_ERR`,
+                details: `Error while adding product to database ${error}`
+            }
+        })
+    }
+};
+
 module.exports = {
     getHomeData,
     getCollection,
@@ -179,5 +260,7 @@ module.exports = {
     categoryData,
     searchProduct,
     getSingleProduct,
-    customerHelp
+    customerHelp,
+    addProductToDB,
+    getProducts
 }

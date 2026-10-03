@@ -10,7 +10,7 @@ const productBaseSchema = new mongoose.Schema(
         salePrice: { type: Number, required: true, min: 0 },
         images: [String],
         stock: { type: Number, default: 0, min: 0 },
-        seller: String,
+        sellerName: String,
         description: String,
         rating: {
             avg: { type: Number, default: 0 },

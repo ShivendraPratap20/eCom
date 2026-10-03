@@ -1,23 +1,20 @@
 const mong = require("mongoose");
+const productBaseModel = require("./Product");
 
 const smartTVSchema = new mong.Schema({
-    name: { type: String },
-    originalPrice: { type: String },
-    salePrice: { type: String },
-    category: { type: String },
-    brand: { type: String },
-    imageURL:{type:String},
-    highlights: [
-        { type: String }
-    ],
-    sellerName: { type: String },
-    searchKeywords: [{ type: String }],
     specifications: {
         type: Map,
         of: mong.Schema.Types.Mixed
     }
 });
 
-const smartTVModel = mong.model("smarttv", smartTVSchema);
+smartTVSchema.virtual("highlights").get(function () {
+    const s = this.specs || {};
+    return {
+        f
+    }
+});
+
+const smartTVModel = productBaseModel.discriminator("smarTV", smartTVSchema);
 
 module.exports = smartTVModel;

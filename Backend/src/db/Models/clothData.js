@@ -1,23 +1,20 @@
 const mong = require("mongoose");
+const productBaseModel = require("./Product");
 
 const clothDataSchema = new mong.Schema({
-    name: { type: String },
-    originalPrice: { type: String },
-    salePrice: { type: String },
-    category: { type: String },
-    brand: { type: String },
-    imageURL:{type:String},
-    highlights: [
-        { type: String }
-    ],
-    sellerName: { type: String },
-    searchKeywords: [{ type: String }],
-    specifications: {
+    specs: {
         type: Map,
         of: mong.Schema.Types.Mixed
     }
 });
 
-const clothDataModel = mong.model("Cloth", clothDataSchema);
+clothDataSchema.virtual("highlights").get(function () {
+    const s = this.specs || {};
+    return {
+        f
+    }
+})
+
+const clothDataModel = productBaseModel.discriminator("cloth", clothDataSchema)
 
 module.exports = clothDataModel;
