@@ -18,7 +18,7 @@ app.use(cors({
     credentials: true 
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../../Frontend/build')));
+//app.use(express.static(path.join(__dirname, '../../Frontend/build')));
 
 app.get("/verification", auth, (req, res) => {});
 app.use("", userRouter);

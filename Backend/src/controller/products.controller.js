@@ -174,7 +174,8 @@ const customerHelp = (req, res) => {
 
 const getProducts = async (req, res) => {
     try {
-        const { page } = req.query;
+        const { page, category, brand, minPrice, maxPrice, rating    } = req.query;
+        const queryData = {};
         if (!page)
             return res.status(400).json({
                 status: false,
@@ -200,19 +201,28 @@ const getProducts = async (req, res) => {
         let limit = 6;
         let offset = Math.max(1, (currentPage - 1) * limit);
 
+        if(category) queryData.category = category;
+        if(brand) queryData.brand = brand;
+        if(minPrice || maxPrice){
+            queryData.salePrice = {};
+            if(minPrice) queryData.salePrice.$gte = Number(minPrice);
+            if(maxPrice) queryData.salePrice.$lte = Number(maxPrice);
+        }
+        if(rating) queryData.rating.$gte = rating;
+
         const [data, totalDocuments] = await Promise.all([
-            productBaseModel.find({}).skip(offset).limit(limit),
-            productBaseModel.find({}).countDocuments()
+            productBaseModel.find(queryData).skip(offset).limit(limit),
+            productBaseModel.find(queryData).countDocuments()
         ]);
 
-        const totalPage = Math.ceil(totalDocuments/limit);
+        const totalPage = Math.ceil(totalDocuments / limit);
 
         res.json({
             status: true,
             data,
             pagination: {
                 requestedPage: currentPage,
-                nextPage: currentPage < totalPage? currentPage + 1 : null,
+                nextPage: currentPage < totalPage ? currentPage + 1 : null,
                 totalPage,
                 limit,
                 totalProducts: totalDocuments,
