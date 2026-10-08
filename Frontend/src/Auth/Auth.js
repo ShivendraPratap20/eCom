@@ -7,7 +7,7 @@ export default function useAuth() {
   const [error, setError] = useState(null);
   const verifyAuth = async () => {
     try {
-      const response = await fetch("/verification", {
+      const response = await fetch("http://localhost:8000/verification", {
         method: "GET",
         credentials: "include",
       });

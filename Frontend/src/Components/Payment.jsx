@@ -256,7 +256,7 @@ export default function Payment() {
         console.error("Invalid JSON in URL", error);
     }
     const setAddress = (userID, adrs) => {
-        fetch("/setAddress", {
+        fetch("http://localhost:8000/setAddress", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -275,7 +275,7 @@ export default function Payment() {
         if (!loading) {
             if (authorized) {
                 try {
-                    const response = await fetch('/orders', {
+                    const response = await fetch('http://localhost:8000/orders', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

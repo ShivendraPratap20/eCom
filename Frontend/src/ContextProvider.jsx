@@ -11,7 +11,7 @@ export default function ContextProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(HMDT_URL)
+        fetch(`http://localhost:8000${HMDT_URL}`)
             .then(response => {
                 if (!response.ok) {
                     setHmdtError(true);

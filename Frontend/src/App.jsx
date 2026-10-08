@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import Index from './Components/Home';
+import Home from './pages/Home';
 import SignIn from './Components/User/SignIn';
 import SignUp from './Components/User/SignUp';
 import Products from './Components/ProductPage/Products';
@@ -20,7 +20,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Index />} />
+          <Route path='/' element={<Home />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/help' element={<Help />} />

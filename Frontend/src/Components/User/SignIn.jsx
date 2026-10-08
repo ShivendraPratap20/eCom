@@ -167,7 +167,7 @@ export default function SignIn() {
             });
         },
         onSubmit: (values, action) => {
-            fetch("/login", {
+            fetch("http://localhost:8000/login", {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json"

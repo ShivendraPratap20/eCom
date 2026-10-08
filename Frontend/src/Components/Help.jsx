@@ -100,7 +100,7 @@ export default function Help() {
     const [message, setMessage] = useState(null);
 
     const handler = () => {
-        fetch("/help", {
+        fetch("http://localhost:8000/help", {
             method: "POST",
             headers: {
                 'Content-Type': "application/json"
